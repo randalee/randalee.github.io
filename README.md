@@ -1,2 +1,2 @@
 # randalee.github.io
-Blog
+blog
