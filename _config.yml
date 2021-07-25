@@ -1,34 +1,25 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve`. If you change this file, please restart the server process.
+# 전체적인 환경 설정파일. 구체적인 상세 옵션에 대해서는 아래 공식 문서를 참조하자.
+# https://mmistakes.github.io/minimal-mistakes/docs/configuration
 
-# Theme Settings
-#
-# Review documentation to determine if you should use `theme` or `remote_theme`
-# https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
+minimal_mistakes_skin    : "mint" # minimal-mistakes에서 제공하는 스킨 정보
 
-# theme                  : "minimal-mistakes-jekyll"
-# remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+# 사이트세팅
+locale                   : "ko-KR" # 기본언어세팅
+title                    : "RandaLee 끄적끄적"  # meta::타이틀 정보
+title_separator          : "|" # 특정 페이지를 들어갈 경우 메인타이틀과 페이지를 구분하기 위한 구분자
+subtitle                 : "Version 0.1" # 타이틀 아래 작게 들어갈 문구
+name                     : "Randa.Lee / 이송걸" # 최하단에 표기될 이름
+description              : "이것저것 끄적이기 위한 블로그입니다 :) 쪼금 늦게 시작한거 같지만 종종 내용을 채워나가고 싶습니다." # meta::사이트 설명
+url                      : "https://randalee.github.io"  # meta::사이트주소
+baseurl                  : # 기본으로 사용할 경로를 임의로 정할 경우 사용
+repository               : "randalee/randalee.github.io" # Github  Username/Reponame
+teaser                   : # 홈페이지 기본 티져 이미지
+logo                     : # 홈페이지 타이틀 로고
+masthead_title           : RandaLee 끄적끄적 Blog # 홈페이지 상단 타이틀(타이틀바가 아니라 화면 영역에 노출할 것이며, 공백인경우 title과 동일하게 사용됨)
+breadcrumbs              : true # 브래드크럼 기능 활성화 여부. 현재 베타버전으로 사이트 탐색 편의를 높인다.
+words_per_minute         : 200 # 해당 포스트 읽는데 걸리는 시간을 대략적으로 계산하여 블로그글에 표시해주기 위한 기능.
 
-# Site Settings
-locale                   : "en-US"
-title                    : "Site Title"
-title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
-description              : "An amazing website."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-# breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+# 댓글세팅 - 댓글은 외부의 서비스를 이용하여 구현
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
@@ -53,6 +44,8 @@ comments:
   staticman:
     branch               : # "master"
     endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
+
+# 구글 recaptcha 세팅
 reCaptcha:
   siteKey                :
   secret                 :
@@ -70,6 +63,7 @@ algolia:
 google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
+
 # SEO Related
 google_site_verification :
 bing_site_verification   :
@@ -101,18 +95,18 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
-  email            :
+  name             : "RandaLee / 이송걸"
+  avatar           : "/assets/images/avatar.jpg" # 프로필 사진
+  bio              : "기록을 남기기 위하여 만들었습니다. <br> 뭔가 이상한 내용이 존재하는 경우 알려주세요!!"
+  location         : "Yongin-si/Seoul, Republic of Korea"
+  email            : "dmz433@naver.com"
   links:
     - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
+      icon: "fas fa-fw fa-envelope-square" # 아이콘은 https://fontawesome.com/v5.15/icons?d=gallery&p=2 에서 보다 다양한 내용을 확인할 수 있음
       # url: "mailto:your.name@email.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
+      url:  "https://randalee.github.io"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
@@ -121,7 +115,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/randalee"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
@@ -137,7 +131,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
+      url: "https://github.com/randalee"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
@@ -274,7 +268,7 @@ compress_html:
     envs: development
 
 
-# Defaults
+# Defaults Post들에 적용될 기본 설정들
 defaults:
   # _posts
   - scope:
