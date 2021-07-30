@@ -65,10 +65,10 @@ google:
   instant_search         : # false (default), true
 
 # SEO Related
-google_site_verification :
+google_site_verification : "wcjeHcQIsNPicYMqlqR4G41A_F0PdTvBRZhQfcPAj0c"
 bing_site_verification   :
 yandex_site_verification :
-naver_site_verification  :
+naver_site_verification  : "15ac9ecac2d2b1982c3f4b4afdb76356e0817770"
 
 # Social Sharing
 twitter:
