@@ -1,6 +1,6 @@
 # main links
 main:
-  - title: "Cagegories"
+  - title: "Categories"
     url: /categories/
   - title: "Tags"
     url: /tags/
