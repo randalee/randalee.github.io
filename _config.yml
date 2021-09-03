@@ -8,7 +8,7 @@ locale                   : "ko-KR" # 기본언어세팅
 title                    : "RandaLee 끄적끄적"  # meta::타이틀 정보
 title_separator          : "|" # 특정 페이지를 들어갈 경우 메인타이틀과 페이지를 구분하기 위한 구분자
 subtitle                 : "Version 0.1" # 타이틀 아래 작게 들어갈 문구
-name                     : "Randa.Lee / 이송걸" # 최하단에 표기될 이름
+name                     : "Randa.Lee" # 최하단에 표기될 이름
 description              : "이것저것 끄적이기 위한 블로그입니다 :) 쪼금 늦게 시작한거 같지만 종종 내용을 채워나가고 싶습니다." # meta::사이트 설명
 url                      : "https://randalee.github.io"  # meta::사이트주소
 baseurl                  : # 기본으로 사용할 경로를 임의로 정할 경우 사용
@@ -96,11 +96,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "RandaLee / 이송걸"
+  name             : "RandaLee"
   avatar           : "/assets/images/avatar.jpg" # 프로필 사진
-  bio              : "기록을 남기기 위하여 만들었습니다. <br> 뭔가 이상한 내용이 존재하는 경우 알려주세요!!"
-  location         : "Yongin-si/Seoul, Republic of Korea"
-  email            : "dmz433@naver.com"
+  bio              : "DBA+DataEngineer의 혼종!?"
+  location         : "Yongin-si, Republic of Korea"
+  email            : "ruciain@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square" # 아이콘은 https://fontawesome.com/v5.15/icons?d=gallery&p=2 에서 보다 다양한 내용을 확인할 수 있음
