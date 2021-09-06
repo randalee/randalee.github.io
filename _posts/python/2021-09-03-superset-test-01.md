@@ -244,4 +244,4 @@ superset run -h 0.0.0.0 -p 8088 --with-threads --reload --debugger
 
 
 ## 다른 이야기
-[Apache Superset(v1.3) 테스트 1편 - 메뉴설명](/python/superset-test-02/)
+[Apache Superset(v1.3) 테스트 2편 - 메뉴설명](/python/superset-test-02/)
