@@ -27,3 +27,12 @@ codekit-config.json
 .sass-cache
 _asset_bundler_cache
 _site
+.idea/.gitignore
+.idea/misc.xml
+.idea/modules.xml
+.idea/randalee.github.io.iml
+.idea/vcs.xml
+.idea/webResources.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/inspectionProfiles/Project_Default.xml
+_includes/google2f91d4cf42fa7907.html
