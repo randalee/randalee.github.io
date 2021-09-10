@@ -247,3 +247,4 @@ superset run -h 0.0.0.0 -p 8088 --with-threads --reload --debugger
 [Apache Superset(v1.3) 테스트 1편 - 설치](/python/superset-test-01/) (지금이야기)  
 [Apache Superset(v1.3) 테스트 2편 - 메뉴설명](/python/superset-test-02/)  
 [Apache Superset(v1.3) 테스트 3편 - FEATURE_FLAGS](/python/superset-test-03/)  
+[Apache Superset(v1.3) 테스트 4편 - Alert&Report](/python/superset-test-04/)  

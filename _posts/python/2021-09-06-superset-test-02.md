@@ -152,3 +152,4 @@ Superset 버전 정보를 표시한다.
 [Apache Superset(v1.3) 테스트 1편 - 설치](/python/superset-test-01/)  
 [Apache Superset(v1.3) 테스트 2편 - 메뉴설명](/python/superset-test-02/) (지금이야기)  
 [Apache Superset(v1.3) 테스트 3편 - FEATURE_FLAGS](/python/superset-test-03/)  
+[Apache Superset(v1.3) 테스트 4편 - Alert&Report](/python/superset-test-04/)  
