@@ -1,4 +1,4 @@
 user-agent: *
 allow: /
 
-Sitemap: https://randalee.github.io/sitemap.xml
+Sitemap: https://randalee.github.io/sitemap
