@@ -288,3 +288,4 @@ Alert의 `GRACE PERIOD`기능은 불필요할 정도로 과한 알람을 방지�
 [Apache Superset(v1.3) 테스트 2편 - 메뉴설명](/python/superset-test-02/)  
 [Apache Superset(v1.3) 테스트 3편 - FEATURE_FLAGS](/python/superset-test-03/)  
 [Apache Superset(v1.3) 테스트 4편 - Alert&Report](/python/superset-test-04/) (지금이야기)  
+[Apache Superset(v1.3) 테스트 5편 - 데몬화/Daemonization 및 기타](/python/superset-test-05/)  
