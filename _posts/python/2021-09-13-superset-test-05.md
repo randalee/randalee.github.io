@@ -1,5 +1,5 @@
 ---
-title: Apache Superset(v1.3) 테스트 5편 - 데몬화/Daemonization 및 기타
+title: Apache Superset(v1.3) 테스트 5편 - 데몬화/Daemonization
 tags:
 - python
 - superset
@@ -62,4 +62,5 @@ nohup celery beat --app=superset.tasks.celery_app:app --logfile=/home/ec2-user/s
 [Apache Superset(v1.3) 테스트 2편 - 메뉴설명](/python/superset-test-02/)  
 [Apache Superset(v1.3) 테스트 3편 - FEATURE_FLAGS](/python/superset-test-03/)  
 [Apache Superset(v1.3) 테스트 4편 - Alert&Report](/python/superset-test-04/)    
-[Apache Superset(v1.3) 테스트 5편 - 데몬화/Daemonization 및 기타](/python/superset-test-05/) (지금이야기)
+[Apache Superset(v1.3) 테스트 5편 - 데몬화/Daemonization](/python/superset-test-05/) (지금이야기)  
+[Apache Superset(v1.3) 테스트 6편 - 구글 OAuth 연동](/python/superset-test-06/)  

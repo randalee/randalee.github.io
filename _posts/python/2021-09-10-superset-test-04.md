@@ -29,20 +29,20 @@ sudo yum install redis
 ```bash
 sudo redis-server
 ```
-![Image](/assets/posts/210910_superset_001.png)
+![Image](/assets/posts/202109/210910_superset_001.png)
 
 그러나 이경우 SSH 세션을 종료하거나 `Ctrl+C`와 같이 나갈 경우 구동된 Redis 서버역시 종료되기에 `/etc/redis.conf`를 수정하기로 한다.
 ```bash
 sudo vi /etc/redis.conf
 ```
 파일을 열어보면 128라인에 `daemonize`가 `no`로 되있는데 이를 `yes`로 변경한 후 저장한다. 
-![Image](/assets/posts/210910_superset_002.png)
+![Image](/assets/posts/202109/210910_superset_002.png)
 
 이후 redis-server 명령을 실행하면서 설정한 Config파일을 명시함으로 해당 설정을 읽고, 자동으로 백그라운드에서 실행하도록 할 수 있다.
 ```bash
 sudo redis-server /etc/redis.conf
 ```
-![Image](/assets/posts/210910_superset_003.png)
+![Image](/assets/posts/202109/210910_superset_003.png)
 
 
 ## Slack BOT Token 발급
@@ -62,7 +62,7 @@ Slack bot token을 발급받는 방법은 많은 글들이 있기에 간략한 �
     2. `files:write`
     3. `chat:write`
 5. 권한을 설정하고 난 후 앱 인스톨을 하여 Bot User OAuth Token 확인
-   ![Image](/assets/posts/210910_superset_004.png)
+   ![Image](/assets/posts/202109/210910_superset_004.png)
 
 추가적으로 Slack BOT의 경우 BOT APP이 메시지를 받기위한 채널에 존재하여야하기 때문에 반드시 해당 채널에 BOT을 초대하여야한다. 
 
@@ -78,7 +78,7 @@ sudo yum install chromedriver
 ```
 위와 같이 yum을 통해 설치가 가능하며, [https://chromedriver.chromium.org/downloads](https://chromedriver.chromium.org/downloads) 사이트에서도 직접 드라이버를 다운 받을 수 있다.
 설치된 경우 아래와 같이 정상적으로 실행할 수 있어야 한다.
-![Image](/assets/posts/210910_superset_005.png)
+![Image](/assets/posts/202109/210910_superset_005.png)
 
 다만, 기본적으로 리눅스에는 영문만을 사용할 수 있기에, Superset에서 한글을 입력한 제목과 같은경우 글자가 깨지는 현상이 발생하게 된다.
 따라서 Linux서버에 한글이 안깨지도록 관련된 라이브러리 설치가 필요하다.
@@ -204,8 +204,8 @@ celery beat --app=superset.tasks.celery_app:app
 다만 기본적으로 데몬으로 동작하지 않기 때문에 위와 같이 실행 시킬경우 2개의 세션이 필요하다. 
 정상적으로 실행된 경우 다음과 같이 실행되며, 해당 화면에서 `Ctrl+C`로 프로세스를 빠져나올 수 있다.
 
-![Image](/assets/posts/210910_superset_006.png)
-![Image](/assets/posts/210910_superset_007.png)
+![Image](/assets/posts/202109/210910_superset_006.png)
+![Image](/assets/posts/202109/210910_superset_007.png)
 
 ## 테스트 진행
 셀러리 프로세스까지 정상적으로 실행되었다면 실제로 메시지가 전송되는지 테스트하도록 한다.    
@@ -214,10 +214,10 @@ Superset 웹페이지에서 `Setting -> Alerts & reports` 메뉴를 클릭하여
 
 > Alert과 Report의 차이는 메시지를 보내기 위한 Trigger조건이 추가적으로 있는가에 대한 여부에 따라 존재한다. 두가지 모두 특정 주기로 실행하는 형태이기는 하나, Alert는 설정한 "임계치"에 해당하는 경우 동작하도록 추가적인 조건이 존재한다. 반면 Report는 실행하는 주기마다 항상 동작하게 된다.
 
-![Image](/assets/posts/210910_superset_008.png)
+![Image](/assets/posts/202109/210910_superset_008.png)
 
 아래는 Alert에 대한 내용을 등록 또는 수정할 때 나오는 화면으로 각 항목에 대한 설명은 아래를 참조한다.
-![Image](/assets/posts/210910_superset_009.png)
+![Image](/assets/posts/202109/210910_superset_009.png)
 
 |카테고리|항목|내용|
 |:---|:---|:---|
@@ -239,16 +239,16 @@ Superset 웹페이지에서 `Setting -> Alerts & reports` 메뉴를 클릭하여
 |Notification method|Add delivery method|해당 Alert을 전송할 주체를 선택한다. 이메일과 슬렉을 지원한다.|
 
 아래는 Report 대한 내용을 등록 또는 수정할 때 나오는 화면이다. 특정 시간마다 발송하는 Report의 특성상 Alert과의 차이점은 `Alert condition`을 설정하는 부분이 없다는것을 제외하고는 기본적으로 동일하다. 
-![Image](/assets/posts/210910_superset_010.png)
+![Image](/assets/posts/202109/210910_superset_010.png)
 
 우선 테스트를 위하여 `Alert`을 하나 추가하기로 한다. 아래와 같이 설정하였다. SQL은 언제나 1을 리턴하도록 하였으며, 그 값이 1일 경우 Alert을 발송하도록 되있다. 즉, 언제나 Alert이 발송되는 샘플이다. 
-![Image](/assets/posts/210910_superset_011.png)
+![Image](/assets/posts/202109/210910_superset_011.png)
 
 스케쥴링이 돌아오는 시간이 되면 셀러리 워커 로그에서 관련한 로그를 확인할 수 있다.
-![Image](/assets/posts/210910_superset_012.png)
+![Image](/assets/posts/202109/210910_superset_012.png)
 
 그리고 실제 Slack에도 관련된 내용이 전달됨을 확인할 수 있다.
-![Image](/assets/posts/210910_superset_013.png)
+![Image](/assets/posts/202109/210910_superset_013.png)
 
 
 ## Alert 유예기간 관련 코드 이슈
@@ -288,4 +288,5 @@ Alert의 `GRACE PERIOD`기능은 불필요할 정도로 과한 알람을 방지�
 [Apache Superset(v1.3) 테스트 2편 - 메뉴설명](/python/superset-test-02/)  
 [Apache Superset(v1.3) 테스트 3편 - FEATURE_FLAGS](/python/superset-test-03/)  
 [Apache Superset(v1.3) 테스트 4편 - Alert&Report](/python/superset-test-04/) (지금이야기)  
-[Apache Superset(v1.3) 테스트 5편 - 데몬화/Daemonization 및 기타](/python/superset-test-05/)  
+[Apache Superset(v1.3) 테스트 5편 - 데몬화/Daemonization](/python/superset-test-05/)  
+[Apache Superset(v1.3) 테스트 6편 - 구글 OAuth 연동](/python/superset-test-06/)  

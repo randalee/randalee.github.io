@@ -47,7 +47,7 @@ sudo make && make altinstall
 ```
 
 정상적으로 설치가 완료된 경우 `/usr/local/bin/` 아래 설치된 것을 확인할 수 있다.
-![Image](/assets/posts/210903_superset_001.png)
+![Image](/assets/posts/202109/210903_superset_001.png)
 
 ### 2. venv 환경 구성
 Superset을 설치하면서 생기는 라이브러리의 의존성에 문제가 없게 하기 위하여 [venv 환경](https://docs.python.org/ko/3/tutorial/venv.html)을 구성한다. 
@@ -61,7 +61,7 @@ cd superset
 source /home/ec2-user/superset/env/bin/activate
 ```
 해당 ENV를 활성화시키기 위하여 `source $venv/bin/activate` 로 활성화 시킨다.  활성화를 시킬 경우 `python` `pip`와 같은 커맨드가 모두 가상환경의 커맨드로 치환되기에 편하게 작업을 할 수 있다.
-![Image](/assets/posts/210903_superset_002.png)
+![Image](/assets/posts/202109/210903_superset_002.png)
 
 ### 3. mysql8 설치
 Superset에서 메타용도로 사용할 DB를 설치하여야한다. DB엔진으로 [sqlalchemy](docs.sqlalchemy.org)를 사용하고 있기에, 여러가지 DB를 선택할 수 있다. superset은 기본적으로 sqlite를 사용하도록 기본 컨피그가 설정되어 있으나, 복잡한 작업을 하기에는 좋지않기에 RDBMS를 이용하는게 보편적이다. 일반적으로 무료인 MySQL 또는 Postgre를 많이 사용하는 편이나, 익숙한 mysql을 설치하였다.
@@ -226,7 +226,7 @@ superset db upgrade
 superset init
 superset fab create-admin # 슈퍼셋 웹에 접근 가능한 어드민 계정을 만든다.
 ```
-![Image](/assets/posts/210903_superset_003.png)
+![Image](/assets/posts/202109/210903_superset_003.png)
 
 
 ### Superset 웹서버 실행 및 접근
@@ -234,13 +234,13 @@ superset에서는 gunicon과 같은 비동기 라이브러리로 웹서버를 �
 ```bash
 superset run -h 0.0.0.0 -p 8088 --with-threads --reload --debugger
 ```
-![Image](/assets/posts/210903_superset_004.png)
+![Image](/assets/posts/202109/210903_superset_004.png)
 
 기본적으로 Airflow와 같이 Flask베이스이기 때문에 실행 명령어 역시 비슷비슷하다. ec2에서 sg는 해당 8088포트에 접근 가능하게 이미 설정되어있다고 가정하면 아래와 같이 로그인페이지가 나온다.  
-![Image](/assets/posts/210903_superset_005.png)
+![Image](/assets/posts/202109/210903_superset_005.png)
 
 그러면 사전에 `superset fab create-admin`명령어로 생성한 계정으로 로그인하고, 로그인을 하면 본격적인 Superset UI를 볼 수 있다.  
-![Image](/assets/posts/210903_superset_006.png)
+![Image](/assets/posts/202109/210903_superset_006.png)
 
 
 ## 씨리즈
@@ -248,4 +248,5 @@ superset run -h 0.0.0.0 -p 8088 --with-threads --reload --debugger
 [Apache Superset(v1.3) 테스트 2편 - 메뉴설명](/python/superset-test-02/)  
 [Apache Superset(v1.3) 테스트 3편 - FEATURE_FLAGS](/python/superset-test-03/)  
 [Apache Superset(v1.3) 테스트 4편 - Alert&Report](/python/superset-test-04/)  
-[Apache Superset(v1.3) 테스트 5편 - 데몬화/Daemonization 및 기타](/python/superset-test-05/)  
+[Apache Superset(v1.3) 테스트 5편 - 데몬화/Daemonization](/python/superset-test-05/)  
+[Apache Superset(v1.3) 테스트 6편 - 구글 OAuth 연동](/python/superset-test-06/)  
