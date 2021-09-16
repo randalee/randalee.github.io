@@ -123,6 +123,52 @@ WHERE user_id = 1;
 ![Image](/assets/posts/202109/210915_superset_011.png)
 
 
+## OAuth연동 후 Alert 이슈해결
+OAuth연동하여 로그인 수단을 변경한것까진 크게 문제가 되지 않았으나, 그 이후 Alert기능이 동작하지 않는 현상이 발생되었다.
+따라서 관련하여 내용을 확인하였으며, 이를 해결할 수 있는 방법에 대하여 기록한다.
+
+Celery Worker의 로그를 확인하본 결과 문제가 되는 증상은 다음과 같았다.
+```shell
+[2021-09-16 02:05:03,957: INFO/ForkPoolWorker-3] Query for 테스트알람 took 4797.01 ms
+[2021-09-16 02:05:03,972: INFO/ForkPoolWorker-3] Screenshotting chart at http://0.0.0.0:8088/superset/slice/1/?standalone=true
+[2021-09-16 02:05:03,975: INFO/ForkPoolWorker-3] Init selenium driver
+[2021-09-16 02:10:09,466: WARNING/ForkPoolWorker-3] Selenium timed out requesting url http://0.0.0.0:8088/superset/slice/1/?standalone=true&standalone=3
+Traceback (most recent call last):
+  File "/home/ec2-user/superset/env/lib/python3.9/site-packages/superset/utils/webdriver.py", line 124, in get_screenshot
+    element = WebDriverWait(driver, self._screenshot_locate_wait).until(
+  File "/home/ec2-user/superset/env/lib/python3.9/site-packages/selenium/webdriver/support/wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message:
+``` 
+즉, 로그상으로는 임계치를 검증하기 이한 쿼리를 수행한 후 로컬에 슈퍼셋 접근하여서 스크린샷을 캡쳐하기 위하여 셀레니움 드라이버를 초기화하였으나, 그 이후 타임아웃이 발생한 것이다.
+내용을 조금더 분석해본 결과 OAuth로 인하여 로그인 되지 않으면 강제로 로그인 관련 페이지러 리다이렉트 해버리는 문제때문으로 보였다.  
+![Image](/assets/posts/202109/210915_superset_012.png)
+
+관련하여 Issue를 검색하게 되었고 해결방법을 찾게 되었다.
+[https://github.com/apache/superset/issues/14330](https://github.com/apache/superset/issues/14330)
+
+바로 superset_config.py에 기본적으로 None으로 설정된 웹 후킹용 함수를 만들어서 넣는 것이다.
+```python
+from superset.utils.urls import headless_url
+from superset.utils.machine_auth import MachineAuthProvider
+
+def auth_driver(driver, user):
+    # Setting cookies requires doing a request first, but /login is redirected to oauth provider, and stuck there.
+    driver.get(headless_url("/doesnotexist"))
+    
+    cookies = MachineAuthProvider.get_auth_cookies(user)
+    
+    for cookie_name, cookie_val in cookies.items():
+        driver.add_cookie(dict(name=cookie_name, value=cookie_val))
+
+    return driver
+
+WEBDRIVER_AUTH_FUNC = auth_driver
+```
+
+이후 정상적으로 전송이 가능했다.
+
+
 ## 씨리즈
 [Apache Superset(v1.3) 테스트 1편 - 설치](/python/superset-test-01/)  
 [Apache Superset(v1.3) 테스트 2편 - 메뉴설명](/python/superset-test-02/)  

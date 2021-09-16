@@ -283,6 +283,36 @@ Alert의 `GRACE PERIOD`기능은 불필요할 정도로 과한 알람을 방지�
             self.set_state_and_log(ReportState.ERROR, error_message=str(ex))
 ```
 
+### 셀레니움 유저 없음 해결
+`Report state: Report Schedule sellenium user not found`과 같은 문구가 발생하며 설정한 내용이 동작하지 않는 케이스가 발견되었다.
+이것은 화면을 캡쳐하거나 CSV 전송을 위하여 셀레니움을 사용하는데, 슈퍼셋 내부의 로그인 유저가 없다는 의미였다.  
+superset의 기본적인 config.py를 보면 `THUMBNAIL_SELENIUM_USER`라는 변수가 있으며 기본 값으로 `admin`을 기록하였다. 그러나 슈퍼셋 계정으로 admin이 없는 경우 발생하는 문구다. 따라서 superset_config.py에 관련 변수를 설정함으로 해결할 수 있다.
+
+```python
+THUMBNAIL_SELENIUM_USER = "사용할 ID"
+```
+
+### 셀레니움 시간초과 관련
+차트를 이용할 경우 차트는 내부적으로 SQL을 실행한 후 렌더링을 하는 과정을 거치는데, 이때 시간이 오래걸리면 타임아웃이 발생하며 Alert이 실패한다. 따라서 이에 관련된 옵션을 `superset_config.py`에 재정의 할 수 있다.
+아래 항목들의 값을 각각 수정하면 된다.
+
+```python
+from datetime import timedelta
+# Time before selenium times out after trying to locate an element on the page and wait
+# for that element to load for a screenshot.
+SCREENSHOT_LOCATE_WAIT = int(timedelta(seconds=10).total_seconds())
+# Time before selenium times out after waiting for all DOM class elements named
+# "loading" are gone.
+SCREENSHOT_LOAD_WAIT = int(timedelta(minutes=5).total_seconds())
+# Selenium destroy retries
+SCREENSHOT_SELENIUM_RETRIES = 5
+# Give selenium an headstart, in seconds
+SCREENSHOT_SELENIUM_HEADSTART = 3
+# Wait for the chart animation, in seconds
+SCREENSHOT_SELENIUM_ANIMATION_WAIT = 5
+```
+
+
 ## 씨리즈
 [Apache Superset(v1.3) 테스트 1편 - 설치](/python/superset-test-01/)  
 [Apache Superset(v1.3) 테스트 2편 - 메뉴설명](/python/superset-test-02/)  
