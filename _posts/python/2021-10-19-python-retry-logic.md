@@ -56,7 +56,7 @@ class RetryLoop():
                  ):
         """
         :param max_loop_count: 최대 루프 카운드
-        :param loop_sleep_interval: 루프당 인터벌 카운트
+        :param loop_sleep_interval: 다음루프를 진행하기까지 대기 시간(초)
         """
         self.max_loop_count = max_loop_count
         self.loop_sleep_interval = loop_sleep_interval
